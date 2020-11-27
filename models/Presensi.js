@@ -4,11 +4,11 @@ const now = new Date();
 const PresensiSchema = new Schema({
   nama: {
     type: Number,
-    // required: true,
+    required: true,
   },
   niu: {
     type: Number,
-    // required: true,
+    required: true,
   },
   time: {
     type: String,
