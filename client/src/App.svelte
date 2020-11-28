@@ -12,8 +12,8 @@
 
   async function addPresensi() {
     const presensi = {
-      //   nama,
-      //   niu,
+        nama,
+        niu,
       time: new Date().getTime(),
     };
     const response = await axios.post("/api/presensis", presensi);

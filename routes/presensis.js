@@ -3,6 +3,12 @@ const Presensi = require("../models/Presensi");
 
 const router = Router();
 
+// Presensi.create({
+//     nama: "Virginia Pardede",
+//     niu: "480209",
+//     time: "tengah malam"
+// });
+
 router.get("/", async (req, res) => {
   try {
     const presensis = await Presensi.find();
@@ -16,8 +22,8 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const { name, niu, time } = req.body;
-  const newPresensi = new Presensi({ name, niu, time });
+  const { nama, niu, time } = req.body;
+  const newPresensi = new Presensi({ nama, niu, time });
   try {
     const presensi = await newPresensi.save();
     if (!presensi) {

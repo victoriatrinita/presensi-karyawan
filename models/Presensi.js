@@ -3,7 +3,7 @@ const { Schema, model } = require("mongoose");
 const now = new Date();
 const PresensiSchema = new Schema({
   nama: {
-    type: Number,
+    type: String,
     required: true,
   },
   niu: {
