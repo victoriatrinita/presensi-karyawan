@@ -1,53 +1,19 @@
 <script>
-  import axios from "axios";
-  import { onMount } from "svelte";
-  let nama = "";
-  let niu = "";
-  let presensis = [];
-
-  onMount(async () => {
-    const { data } = await axios.get("/api/presensis");
-    presensis = data;
-  });
-
-  async function addPresensi() {
-    const presensi = {
-      nama,
-      niu,
-      time: new Date().toUTCString(),
-    };
-    const response = await axios.post("/api/presensis", presensi);
-  }
-
-  async function removePresensi(id) {
-    const response = await axios.delete("/api/presensis" + id);
-    if (response.data.id === id) {
-      presensis = presensis.filter((t) => t._id !== id);
-    }
-  }
+	import Router from './routes/index.svelte';
 </script>
 
+<main>
+	<Router />
+</main>
+
 <style>
-  h1 {
-    color: purple;
-  }
+	main {
+		background-color: #f5f7fc;
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+		font-family: 'Poppins', sans-serif;
+		padding: 0 2em 0 6em;
+		margin: -8px;
+	}
 </style>
-
-<h1>Hello!</h1>
-<input type="text" bind:value={nama} />
-<input type="text" bind:value={niu} />
-<button
-  type="submit"
-  on:click={() => {
-    addPresensi();
-    alert('sudah');
-  }} />
-
-<!-- <button type="submit" on:click={() => removePresensi(presensi._id)} /> -->
-
-{#each presensis as presensi}
-  <p style="color:orange">{presensi.time}</p>
-  <p>{presensi.nama}</p>
-  <p style="color:blue">{presensi.niu}</p>
-{/each}
-<!-- <p>{JSON.stringify(presensis)}</p> -->
