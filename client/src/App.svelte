@@ -12,9 +12,9 @@
 
   async function addPresensi() {
     const presensi = {
-        nama,
-        niu,
-      time: new Date().getTime(),
+      nama,
+      niu,
+      time: new Date().toUTCString(),
     };
     const response = await axios.post("/api/presensis", presensi);
   }
@@ -46,8 +46,8 @@
 <!-- <button type="submit" on:click={() => removePresensi(presensi._id)} /> -->
 
 {#each presensis as presensi}
-  <p>{presensi.time}</p>
+  <p style="color:orange">{presensi.time}</p>
   <p>{presensi.nama}</p>
-  <p>{presensi.niu}</p>
+  <p style="color:blue">{presensi.niu}</p>
 {/each}
 <!-- <p>{JSON.stringify(presensis)}</p> -->
