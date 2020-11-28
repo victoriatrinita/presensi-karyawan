@@ -1,7 +1,7 @@
-import App from "./App.svelte";
+import Layout from './layout.svelte';
 
-const app = new App({
-  target: document.body,
+const app = new Layout({
+	target: document.body,
 });
 
 window.app = app;
