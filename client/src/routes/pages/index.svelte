@@ -24,11 +24,11 @@
 		return `${time}`;
 	};
 
-	onMount(async () => {
+	onMount( () => {
+		setInterval(async () => {
 		const { data } = await axios.get('/api/presensis');
 		presensis = data;
-		setInterval(() => {
-			dateTime = new Date();
+		dateTime = new Date();
 		}, 1000);
 	});
 
@@ -44,7 +44,6 @@
 			time: new Date().toUTCString(),
 		};
 		const response = await axios.post('/api/presensis', presensi);
-		window.location.href = '/';
 	}
 
 	async function removePresensi(id) {
