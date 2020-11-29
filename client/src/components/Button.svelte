@@ -32,6 +32,7 @@
 		color: #fff;
 		text-align: center;
 		font-weight: 500;
+		cursor: pointer; 
 	}
 	button.disabled {
 		cursor: not-allowed;
