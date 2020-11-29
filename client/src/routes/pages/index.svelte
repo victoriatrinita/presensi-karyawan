@@ -15,6 +15,14 @@
 	let tableHeader = ["Timestamp", "ID","Nama", "NIU"];
 	$: time = dateTime.toLocaleTimeString();
 	const date = dateTime.toLocaleDateString();
+	const formatDate = (dt) => {
+		const date = new Date(dt).toUTCString().split(' ').slice(0, -2);
+		return `${date.join(' ')}`;
+	};
+	const formatTime = (dt) => {
+		const time = new Date(dt).toLocaleTimeString('en-GB').slice(0, -3);
+		return `${time}`;
+	};
 
 	onMount(async () => {
 		const { data } = await axios.get('/api/presensis');
@@ -73,13 +81,15 @@
   			</div>
 			<table>
 				<tr>
-					<th>Timestamp</th>
+					<th>Tanggal</th>
+					<th>Waktu</th>
 					<th>Nama</th>
 					<th>NIU</th>
 				</tr>
 				{#each presensis as presensi}
 					<tr>
-						<td>{presensi.time}</td>
+						<td>{formatDate(presensi.time)}</td>
+						<td>{formatTime(presensi.time)}</td>
 						<td>{presensi.nama}</td>
 						<td>{presensi.niu}</td>
 					</tr>
