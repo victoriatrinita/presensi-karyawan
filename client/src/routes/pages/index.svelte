@@ -10,18 +10,13 @@
 	let niu = '';
 	let presensis = [];
 	let jumlahMahasiswa = '';
+	const dateTime = new Date();
+	const time = dateTime.toLocaleTimeString();
+	const date = dateTime.toLocaleDateString();
 
 	onMount(async () => {
 		const { data } = await axios.get('/api/presensis');
 		presensis = data;
-
-		var dateTime = new Date();
-		var time = dateTime.toLocaleTimeString();
-		var date = dateTime.toLocaleDateString();
-		document.getElementById("jumlahMahasiswa").innerHTML = presensis.length;
-		document.getElementById("date").innerHTML = date;
-		document.getElementById("time").innerHTML = time;
-
 	});
 
 	async function addPresensi() {
@@ -48,15 +43,15 @@
 	<div class="info">
 		<ShadowedCard aos="fade-up">
 			<h2>Jumlah Mahasiswa</h2>
-			<p id="jumlahMahasiswa"></p>
+		<p>{presensis.length}</p>
 		</ShadowedCard>
 		<ShadowedCard aos="fade-up">
 			<h2>Tanggal</h2>
-			<p id="date"></p>
+		<p>{date}</p>
 		</ShadowedCard>
 		<ShadowedCard aos="fade-up">
 			<h2>Waktu</h2>
-			<p id="time"></p>
+		<p>{time}</p>
 		</ShadowedCard>
 	</div>
 
