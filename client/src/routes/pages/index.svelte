@@ -10,13 +10,16 @@
 	let niu = '';
 	let presensis = [];
 	let jumlahMahasiswa = '';
-	const dateTime = new Date();
-	const time = dateTime.toLocaleTimeString();
+	let dateTime = new Date();
+	$: time = dateTime.toLocaleTimeString();
 	const date = dateTime.toLocaleDateString();
 
 	onMount(async () => {
 		const { data } = await axios.get('/api/presensis');
 		presensis = data;
+		setInterval(() => {
+			dateTime = new Date();
+		}, 1000);
 	});
 
 	async function addPresensi() {
@@ -51,7 +54,7 @@
 		</ShadowedCard>
 		<ShadowedCard aos="fade-up">
 			<h2>Waktu</h2>
-		<p>{time}</p>
+			<p>{time}</p>
 		</ShadowedCard>
 	</div>
 
