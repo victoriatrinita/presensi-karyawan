@@ -5,12 +5,14 @@
 	import Sidebar from '../../components/Sidebar.svelte';
 	import Button from '../../components/Button.svelte';
 	import ShadowedCard from '../../components/ShadowedCard.svelte';
+	import { csvGenerator } from "../../csvGenerator";
 
 	let nama = '';
 	let niu = '';
 	let presensis = [];
 	let jumlahMahasiswa = '';
 	let dateTime = new Date();
+	let tableHeader = ["Timestamp", "ID","Nama", "NIU"];
 	$: time = dateTime.toLocaleTimeString();
 	const date = dateTime.toLocaleDateString();
 
@@ -21,6 +23,11 @@
 			dateTime = new Date();
 		}, 1000);
 	});
+
+	function downloadHandler() {
+		let tableKeys = Object.keys(presensis[0]); 
+		csvGenerator(presensis, tableKeys, tableHeader, "presensi_dteti.csv");
+	}
 
 	async function addPresensi() {
 		const presensi = {
@@ -46,11 +53,11 @@
 	<div class="info">
 		<ShadowedCard aos="fade-up">
 			<h2>Jumlah Mahasiswa</h2>
-		<p>{presensis.length}</p>
+			<p>{presensis.length}</p>
 		</ShadowedCard>
 		<ShadowedCard aos="fade-up">
 			<h2>Tanggal</h2>
-		<p>{date}</p>
+			<p>{date}</p>
 		</ShadowedCard>
 		<ShadowedCard aos="fade-up">
 			<h2>Waktu</h2>
@@ -60,7 +67,10 @@
 
 	<div class="table">
 		<ShadowedCard aos="fade-up">
-			<h2>Daftar Presensi</h2>
+			<div class="header">
+				<h2>Daftar Presensi</h2>
+				<button on:click={downloadHandler}>Download CSV</button>
+  			</div>
 			<table>
 				<tr>
 					<th>Timestamp</th>
@@ -129,6 +139,10 @@
 	.table {
 		margin-bottom: 2em;
 	}
+	.header {
+    	display: flex;
+    	justify-content: space-between;
+  	}
 	input {
 		border: 0.5px solid #adadad;
 		background-color: #ffffff;
@@ -139,4 +153,13 @@
 		border: 0.5px solid #adadad;
 		box-shadow: none;
 	}
+	button {
+		border: none; 
+		color: white;
+		padding: 0.5em 1em;
+		cursor: pointer; 
+		background-color: #4caf50;
+		height: fit-content;
+		border-radius: 0.5em;
+  }
 </style>
