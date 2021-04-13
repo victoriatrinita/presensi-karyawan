@@ -6,6 +6,7 @@
 	import Button from '../../components/Button.svelte';
 	import ShadowedCard from '../../components/ShadowedCard.svelte';
 	import { csvGenerator } from "../../csvGenerator";
+	import { Link } from 'svelte-routing';
 
 	let nama = '';
 	let niu = '';
@@ -55,6 +56,8 @@
 </script>
 
 <Sidebar {location} />
+<Link to="/">Home</Link><br />
+<Link to="blog">Blog</Link>
 <div class="wrapper">
 	<h1>Dashboard Admin</h1>
 	<div class="info">
